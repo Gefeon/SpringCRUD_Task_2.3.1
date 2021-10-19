@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Users list</title>
+</head>
+
+<table border="1">
+
+    <thead>
+    <tr>
+        <th colspan="15">Users List</th>
+    </tr>
+
+    <tr>
+        <th>ID</th>
+        <th colspan="2">Name</th>
+        <th colspan="2">Surname</th>
+        <th colspan="2">Age</th>
+        <th colspan="3">Phone number</th>
+        <th colspan="2">Edit user</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+    <tr th:each="User, state : ${users}">
+        <td th:text="${User.id}"></td>
+        <td colspan="2" th:text="${User.name}"></td>
+        <td colspan="2" th:text="${User.surname}"></td>
+        <td colspan="2" th:text="${User.age}"></td>
+        <td colspan="3" th:text="${User.phoneNumber}"></td>
+        <td>
+            <form th:action="@{/edit(id=${User.id})}" th:object="${User}">
+                <button type="hidden" name="id" th:value="${User.id}"><i class="material-icons button edit">edit</i>
+                </button>
+            </form>
+            <form th:action="@{/delete(id=${User.id})}" th:object="${User}">
+                <button type="hidden" name="id" th:value="${User.id}"><i class="material-icons button delete">delete</i>
+                </button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+
+</table>
+
+</html>
+
+<a class="bt more-bt" href="/add">
+    <span class="fl"></span><span class="sfl"></span><span class="cross"></span><i></i>
+    <p>Add new User</p>
+</a>

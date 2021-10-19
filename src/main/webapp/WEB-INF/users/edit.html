@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>User editor page</title>
+</head>
+
+<body>
+<div class="container align-content-center">
+  <h2 class="text-center">User editor page</h2>
+  <div class="row align-items-center">
+    <div class="col-lg-4 md-5 offset-4">
+
+      <form th:action="@{/edit}" th:object="${user}" th:method="post">
+        <input type="hidden" name="id" th:value="${user.getId()}">
+
+        <div class="mb-3">
+          <label th:for="name" class="form-label"></label>
+          <input type="text" name="name" th:id="name"
+                 th:value="${user.getName()}" placeholder="Name" required>
+        </div>
+
+        <div class="mb-3">
+          <label th:for="surname" class="form-label"></label>
+          <input type="text" name="surname" th:id="surname"
+                 th:value="${user.getSurname()}" placeholder="Surname" required>
+        </div>
+
+        <div class="mb-3">
+          <label th:for="age" class="form-label"></label>
+          <input type="age" name="age" th:id="age"
+                 th:value="${user.getAge()}" placeholder="Age" required>
+        </div>
+
+        <div class="mb-3">
+          <label th:for="phoneNumber" class="form-label"></label>
+          <input pattern="\+\d{11}" name="phoneNumber" th:id="phoneNumber"
+                 placeholder="Enter +79998887766"
+                 th:value="${user.getPhoneNumber()}" required>
+        </div>
+
+        <div class="text-center">
+          <input type="submit" value="Edit User"
+                 class="btn btn-info btn-block rounded-0 py-2">
+        </div>
+
+      </form>
+
+      <form th:action="@{/}">
+        <button type="submit" class="btn btn-outline-danger">Return to Users List</button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
